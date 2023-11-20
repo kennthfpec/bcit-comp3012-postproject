@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div>
+  <div class="register-error"><%= error %></div>
+  <form action="/users/register" method="post">
+    <div class="form-group">
+      <label for="unmae">Username</label>
+      <input type="text" name="uname" id="uname" placeholder="Username" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+  </form>
+</div>

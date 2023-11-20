@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div class="row">
+  <div class="col-md-3">Comment Id</div>
+  <div class="col-md-9"><%= comment.id %></div>
+</div>  
+<div class="row">
+  <div class="col-md-3">Post Id</div>
+  <div class="col-md-9"><%= comment.post_id %></div>
+</div>  
+<div class="row">
+  <div class="col-md-3">Timestamp</div>
+  <div class="col-md-9"><%= formatTimestamp(comment.timestamp) %></div>
+</div>  
+<div class="row">
+  <div class="col-md-3">Creator</div>
+  <div class="col-md-9"><%= comment.creator.uname %></div>
+</div>  
+<div class="row">
+  <div class="col-md-3">Description</div>
+  <div class="col-md-9"><%= comment.description %></div>
+</div>  
+<% if (user && user.id == comment.creator.id) { %>
+<div class="row">
+  <div class="col-md-12"><a class="btn btn-primary" href="/comments/deleteconfirm/<%= comment.id %>">Delete</a></div>
+</div>  
+<% } %>
+

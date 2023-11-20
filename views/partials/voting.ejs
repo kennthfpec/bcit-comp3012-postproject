@@ -1,0 +1,25 @@
+<div class="voting-container <%= votingItemCssClass %>">
+  <% 
+    const vote = getVote(user?.id, post.id) 
+    const hasVote = vote && vote.hasOwnProperty("user_id");
+    const voteYes = vote && vote.value > 0; 
+    const voteNo = vote && vote.value < 0;
+  %> 
+  <% if (user) { %>
+    <div class="voting-item">                
+      <form action="/votes/vote-yes/<%= post.id %>" method="POST">
+        <input type="hidden" name="undo" value="<%= voteYes? true: false %>" />
+        <input type="submit" value="+" class="vote-button <%= voteNo? 'btn-disabled': '' %> <%= hasVote && voteYes? 'voted': '' %>" />
+      </form>          
+    </div>        
+  <% } %>
+    <div class="voting-item"><%= getVoteCount(post.id) %></div>
+  <% if (user) { %>    
+    <div class="voting-item">
+      <form action="/votes/vote-no/<%= post.id %>" method="POST">
+        <input type="hidden" name="undo" value="<%= voteNo? true: false %>" />
+        <input type="submit" value="-" class="vote-button <%= voteYes? 'btn-disabled': '' %> <%= hasVote && voteNo? 'voted': '' %>" />
+      </form>          
+    </div>
+    <% } %>
+  </div>

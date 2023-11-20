@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div>
+    <div class="row">
+      <div class="col-md-12"><%- include('partials/voting.ejs', { "post": post,  "votingItemCssClass": "layout-horizontal"}) %></div>
+    </div>  
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Title</div>
+      <div class="col-md-10"><%= post.title %></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Link</div>
+      <div class="col-md-10"><a href="<%= post.link %>"><%= post.link %></a></div>      
+    </div>
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Creator</div>
+      <div class="col-md-10"><%= post.creator.uname %></div>      
+    </div>
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Timestamp</div>      
+      <div class="col-md-10"><%= formatTimestamp(post.timestamp) %></div>      
+    </div>
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Subgroup</div>      
+      <div class="col-md-10"><%= post.subgroup %></div>      
+    </div>      
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Description</div>
+      <div class="col-md-10"><%= post.description %></div>
+    </div>      
+    <% if (user && user.id == post.creator.id) { %>
+    <div class="row">      
+      <div class="col-md-12">
+        <a class="btn btn-primary" href="/posts/edit/<%= post.id %>">Edit</a>
+        <a class="btn btn-primary" href="/posts/deleteconfirm/<%= post.id %>">Delete</a>
+      </div>
+    </div>      
+    <% } %>
+</div>
+<div>
+  <% if (user) { %>
+    <div class="container">
+      <form action="/posts/comment-create/<%= post.id %>" method="POST">
+        <div class="form-group">
+          <textarea class="form-control" id="descriptionInput" rows="2" placeholder="Comment" name="description"
+          ></textarea>
+          <input type="hidden" name="creator" value="<%= user.id %>" />
+        </div>
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+      </form>
+    </div>
+  <% } %>  
+  <div class="comments-section">Comments</div>
+    <ul>
+      <% post.comments.forEach(c => { %>
+        <li class="list-item">
+          <div class="row">
+            <div class="col-md-10">
+              <div>
+                <%= c.description %>          
+              </div>
+              <div>
+                <span class="created-by">Creator: <%= c.creator.uname %></span>, 
+                <span class="created-date">Timestamp: <%= formatTimestamp(c.timestamp) %></span>                                    
+              </div>
+            </div>                    
+            <div class="col-md-2">
+              <span><a class="btn btn-primary" href="/comments/show/<%= c.id %>">View</a></span>
+            </div>  
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div>
+<table class="table table-striped">  
+<% subs.forEach(subname => { %>
+  <tr>
+    <td>
+      <%= subname %>
+    </td>
+    <td>
+      <a class="align-right btn btn-primary" href="/subs/show/<%=subname%>">View</a>    
+    </td>
+  </tr>
+<% }) %>
+</table>

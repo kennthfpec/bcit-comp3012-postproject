@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div>
+  <form action="/comments/delete/<%= comment.id %>" method="POST">
+    <div class="form-group">
+      <input type="hidden" name="postId" value="<%= comment.post_id %>"
+      <p>Are you sure to delete this comment"</p>            
+      <button type="submit" class="active align-left btn btn-primary" >Yes</button>
+      <a class="btn btn-primary" href="/comments/show/<%= comment.id %>">No</a>
+    </div>
+  </form>
+</div>

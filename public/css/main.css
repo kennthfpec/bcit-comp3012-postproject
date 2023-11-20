@@ -1,0 +1,22 @@
+body {
+  background-color: #eee;
+  font-size: 16px;
+}
+
+.wrapper {
+  width: 760px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 10px;
+}
+
+header {
+  background-color: ghostwhite;
+  padding: 20px;
+}
+
+main {
+  background-color: cornsilk;
+  padding: 20px;
+}
+

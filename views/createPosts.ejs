@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md"><h4><%- title %></h4></div>
+</div>
+<div class="container">
+  <form action="/posts/create" method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="titleInput" placeholder="Title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="link">Link</label>
+      <input type="url" class="form-control" id="linkInput" placeholder="Link" name="link" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Subgroup</label>
+      <input type="text" class="form-control" id="subGroupInput" placeholder="Subgroup" name="subgroup">
+    </div>                  
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="descriptionInput" rows="2" placeholder="Description" name="description"
+        required></textarea>
+      <input type="hidden" name="creator" value="<%= user.id %>" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</div>
